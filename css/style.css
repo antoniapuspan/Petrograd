@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    background-color: red;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-areas: "hr"
+        "nv"
+        "ct"
+        "ft";
+
+}
+
+header {
+    height: 30vw;
+}
+
+.hero-image {
+   background-image: url(imgs/hero-img2.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+    position: relative;
+    display: grid;
+    grid-area: "hr";
+
+
+}
