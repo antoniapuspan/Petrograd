@@ -1,3 +1,29 @@
+function init() {
+    fetch("https://kea-alt-del.dk/t5/api/categories").then(r => r.json()).then(
+        function (data) {
+            categoriesReceived(data)
+        }
+    )
+
+}
+init();
+
+function categoriesReceived(cats) {
+    createNavigation(cats);
+    //createSections(cats);
+}
+
+function createNavigation(categories) {
+    categories.forEach(cat => {
+
+
+        const a = document.createElement("a");
+
+        document.querySelector("ul").appendChild(a);
+    })
+}
+
+/*
 //fetch data
 fetch("https://kea-alt-del.dk/t5/api/productlist")
     .then(function (response) {
@@ -57,8 +83,6 @@ const veggiefilter = document.querySelector("#veggiefilter");
 veggiefilter.addEventListener("click", veggieFilterClicked);
 
 function veggieFilterClicked() {
-    //a select all
-    
     //b select all non veggie
     const articles = document.querySelectorAll("article:not(.vegetarian)");
     //console.log(articles)
@@ -68,13 +92,19 @@ function veggieFilterClicked() {
     })
 }
 
+const alcoholfilter = document.querySelector("#alcoholfilter");
+alcoholfilter.addEventListener("click", alcoholFilterClicked);
+
+function alcoholFilterClicked() {
+    alcoholfilter.classList.toggle("active")
+ //b select all non veggie
+    const articles = document.querySelectorAll("article:not(.vegetarian)");
+    //console.log(articles)
+    articles.forEach(elem=>{
+        elem.classList.add("hidden")
+        
+    })
+}
 
 
-
-
-
-
-
-
-
-
+*/
