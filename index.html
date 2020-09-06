@@ -12,13 +12,13 @@
 <body>
     <!-- Nagigation -->
     <header id="header">
-       <!-- <div class="hero-image">
+        <!-- <div class="hero-image">
             <img src="imgs/hero-img2.jpg">
         </div>
         -->
         <nav>
             <a href="#">PETROGRAD</a>
-           
+
         </nav>
     </header>
     <details>
@@ -26,28 +26,36 @@
         <button id="veggiefilter">Veggie dishes</button>
         <button id="alcoholfilter">Non-alcoholic dishes</button>
     </details>
-<!--Page content-->
+    <!--Page content-->
     <main class="productlist">
-        
-            <template id="productTemplate">
-                <article class="product">
-                    <img src="imgs/small/rodbede-cabanossi-sm.jpg" alt="" />
-                    <div class="icons">
-                        <img class="vegetarian hidden" src="imgs/vegetarian.svg">
-                    </div>
-                    <section class="productbody">
-                        <h3 class="data_name">Cabanossi med rødbedecreme og løg</h3>
-                        <p>Cabanossi med rødbedecreme og creme er egentlig en forret, men kammerat Vladimir elskede denne ret så højt, at han forbød restauranter i Krigien at sælge det som andet end en hovedret. Vi anbefaler det dog som forret, inden en god Bortsjs. Skylles helst ned med vodka.
-                        </p>
-                        <h4 class="data_price">49,-</h4>
-                        <h4 class="data_discount">DISC,-</h4>
 
-                        <button>See details</button>
-                    </section>
-                </article>
-            </template>
-        
+        <template id="productTemplate">
+            <article class="product">
+                <img class="product-image" src="imgs/small/rodbede-cabanossi-sm.jpg" alt="" />
+                <div class="icons">
+                    <img class="vegetarian hidden" src="imgs/vegetarian.svg">
+                </div>
+                <section class="productbody">
+                    <h3 class="data_name">Cabanossi med rødbedecreme og løg</h3>
+                    <p>Cabanossi med rødbedecreme og creme er egentlig en forret, men kammerat Vladimir elskede denne ret så højt, at han forbød restauranter i Krigien at sælge det som andet end en hovedret. Vi anbefaler det dog som forret, inden en god Bortsjs. Skylles helst ned med vodka.
+                    </p>
+                    <h4 class="data_price">49,-</h4>
+                    <h4 class="data_discount">DISC,-</h4>
+
+                    <button>See details</button>
+                </section>
+            </article>
+        </template>
+
     </main>
+    <div class="modal-background">
+        <div class="modal-content">
+            <h3 class="modal-name">NAME</h3>
+            <img src="" alt="" class="modal-image" />
+            <p class="modal-description">LONG DESCRIPTION</p>
+            <h4 class="modal-price">PRICE</h4>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 

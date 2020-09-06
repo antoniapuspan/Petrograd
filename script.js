@@ -1,7 +1,7 @@
 function init() {
     fetch("https://kea-alt-del.dk/t5/api/categories").then(r => r.json()).then(
         function (data) {
-            categoriesReceived(data)
+            categoriesReceived(data);
         }
     )
 
@@ -11,20 +11,23 @@ init();
 function categoriesReceived(cats) {
     createNavigation(cats);
     createSections(cats);
+    fetchProducts();
 }
-function createSections(categories){
+
+function createSections(categories) {
     //<section id="starter">
-            //<h2>Starter</h2>
-    categories.forEach(category=>{
+    //<h2>Starter</h2>
+    categories.forEach(category => {
         const section = document.createElement("section");
         section.setAttribute("id", category);
         const h2 = document.createElement("h2");
         h2.textContent = category;
         section.append(h2);
         document.querySelector(".productlist").appendChild(section);
-        
+
     })
 }
+
 function createNavigation(categories) {
     categories.forEach(cat => {
         console.log(cat)
@@ -36,7 +39,9 @@ function createNavigation(categories) {
     })
 }
 
-/*
+function fetchProducts() {
+
+}
 //fetch data
 fetch("https://kea-alt-del.dk/t5/api/productlist")
     .then(function (response) {
@@ -46,7 +51,7 @@ fetch("https://kea-alt-del.dk/t5/api/productlist")
     //console.log(data)
     .then(function (data) {
         console.log(data)
-        dataReceived(data);
+        dataReceived(data)
     })
 
 function dataReceived(products) {
@@ -57,22 +62,25 @@ function dataReceived(products) {
 }
 //executed once for each product
 function showProduct(myProduct) {
-    console.log(myProduct) 
+    console.log(myProduct)
 
     //finding the template
     const temp = document.querySelector("#productTemplate").content;
     //clone the template
     const myCopy = temp.cloneNode(true);
     
-    if(!myProduct.discount) {
+    const img = myCopy.querySelector(".product-image");
+    img.setAttribute("src", `https://kea-alt-del.dk/t5/site/imgs/medium/${myProduct.image}-md.jpg`)
+
+    if (!myProduct.discount) {
         //console.log("NOT DISCOUNT")
         myCopy.querySelector(".data_discount").classList.add("hidden")
-        
+
     }
-    if(myProduct.vegetarian) {
+    if (myProduct.vegetarian) {
         myCopy.querySelector(".vegetarian").classList.remove("hidden");
     }
-    if(myProduct.soldout) {
+    if (myProduct.soldout) {
         const p = document.createElement("p");
         p.textContent = "Sold Out";
         p.classList.add("soldout")
@@ -81,17 +89,42 @@ function showProduct(myProduct) {
     //setup classes for filtering
     //1.find the article
     const article = myCopy.querySelector("article");
-    
+
     //2. add classes
-    if(myProduct.vegetarian) {
+    if (myProduct.vegetarian) {
         article.classList.add("vegetarian")
     }
     //fill in the template
-myCopy.querySelector(".data_name").textContent = myProduct.name; 
-    //append
-    const parentElem = document.querySelector("section#starter");
-    parentElem.appendChild(myCopy);
+    myCopy.querySelector(".data_name").textContent = myProduct.name;
+
+
+
+
+    myCopy.querySelector("button").addEventListener("click", () => {
+        fetch(`https://kea-alt-del.dk/t5/api/product?id=${myProduct.id}`)
+            .then(res => res.json())
+            .then(showDetails);
+    });
+
+
+//append
+const parentElem = document.querySelector("section#" + myProduct.category);
+parentElem.appendChild(myCopy)
 }
+
+
+const modal = document.querySelector(".modal-background"); 
+//once we have our data, ....
+function showDetails(data) {
+    console.log(data)
+  modal.querySelector(".modal-name").textContent = data.name;
+  modal.querySelector(".modal-description").textContent = data.longdescription;
+//  //...
+ modal.classList.remove("hide");
+}
+
+
+
 const veggiefilter = document.querySelector("#veggiefilter");
 veggiefilter.addEventListener("click", veggieFilterClicked);
 
@@ -99,9 +132,9 @@ function veggieFilterClicked() {
     //b select all non veggie
     const articles = document.querySelectorAll("article:not(.vegetarian)");
     //console.log(articles)
-    articles.forEach(elem=>{
+    articles.forEach(elem => {
         elem.classList.add("hidden")
-        
+
     })
 }
 
@@ -110,14 +143,24 @@ alcoholfilter.addEventListener("click", alcoholFilterClicked);
 
 function alcoholFilterClicked() {
     alcoholfilter.classList.toggle("active")
- //b select all non veggie
+    //b select all non veggie
     const articles = document.querySelectorAll("article:not(.vegetarian)");
     //console.log(articles)
-    articles.forEach(elem=>{
+    articles.forEach(elem => {
         elem.classList.add("hidden")
-        
+
     })
 }
 
 
-*/
+
+
+//close the modal when clicked
+
+modal.addEventListener("click", () => {
+    modal.classList.add("hide");
+});
+
+
+
+
