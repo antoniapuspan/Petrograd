@@ -77,6 +77,7 @@ body {
   background: rgba(255, 255, 255, 1);
   box-shadow: 3px 3px 5px #000000ab;
   position: relative;
+    position: relative;
 }
 
 .product p {
@@ -101,4 +102,14 @@ body {
   padding: 8px;
   font-size: 1.3rem;
   cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+.soldout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: hotpink;
 }
