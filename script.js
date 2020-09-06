@@ -10,16 +10,29 @@ init();
 
 function categoriesReceived(cats) {
     createNavigation(cats);
-    //createSections(cats);
+    createSections(cats);
 }
-
+function createSections(categories){
+    //<section id="starter">
+            //<h2>Starter</h2>
+    categories.forEach(category=>{
+        const section = document.createElement("section");
+        section.setAttribute("id", category);
+        const h2 = document.createElement("h2");
+        h2.textContent = category;
+        section.append(h2);
+        document.querySelector(".productlist").appendChild(section);
+        
+    })
+}
 function createNavigation(categories) {
     categories.forEach(cat => {
-
+        console.log(cat)
 
         const a = document.createElement("a");
-
-        document.querySelector("ul").appendChild(a);
+        a.textContent = cat;
+        a.setAttribute("href", `#${cat}`)
+        document.querySelector("nav").appendChild(a);
     })
 }
 
